@@ -109,7 +109,7 @@ def calculate_risk(
     }
 
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     refund_tool = {
         "name": "process_refund",
         "risk_weight": 80,
