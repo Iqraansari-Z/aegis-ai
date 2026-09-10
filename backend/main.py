@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 from backend.database.init_db import init_db
 from backend.database.vector_store import ingest_policies
 from backend.routers import agents, audit, gateway, tools
@@ -27,13 +30,13 @@ def startup_event():
     ingest_policies()
 
 
-# CORS — allows React (localhost:5173) and future Vercel URL to talk to this API
+# CORS — allows React (localhost:5173) and the deployed Vercel frontend to talk to this API
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:5173",     # React dev server
-        "http://localhost:3000",     # fallback
-        "*"                          # update to Vercel URL in production
+        "http://localhost:5173",              # React dev server
+        "http://localhost:3000",              # fallback
+        "https://aegis-ai-ivory.vercel.app",  # production frontend
     ],
     allow_credentials=True,
     allow_methods=["*"],
